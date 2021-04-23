@@ -1,4 +1,4 @@
-# Canada COVID-19 Tracker
+# COVID-19 Tracker for Canada
 
 ## Introduction
 
