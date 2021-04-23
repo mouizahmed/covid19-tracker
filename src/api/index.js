@@ -4,9 +4,11 @@ const url = 'https://api.covid19tracker.ca/summary';
 
 export const fetchData = async () => {
     try {
-        const data = await axios.get(url);
+        const { data: { data}} = await axios.get(url);
 
-        return data;
+
+        return data.map(({ total_cases, total_vaccinated, total_fatalities, total_hospitalizations, total_recoveries, total_tests }) => ({ total_cases, total_vaccinated, total_fatalities, total_hospitalizations, total_recoveries, total_tests }));
+        
     } catch (error) {
 
     }
