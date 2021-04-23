@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Cards, Chart, ProvincePicker } from './components';
-import { fetchData } from './api/';
+import { fetchData, fetchDate } from './api/';
 
 import styles from './App.module.css';
 
@@ -20,6 +20,7 @@ class App extends React.Component {
 
     render() {
         const { data } = this.state;
+        const { date } = this.state;
 
         return (
             <div>
