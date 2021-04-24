@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Cards, Chart, ProvincePicker } from './components';
-import { fetchData, fetchDate } from './api/';
+import { fetchDailyData, fetchData } from './api/';
 
 import styles from './App.module.css';
 
@@ -9,6 +9,7 @@ class App extends React.Component {
     
     state = {
         data: {},
+        daily: {},
     }
 
     async componentDidMount() {
@@ -16,16 +17,19 @@ class App extends React.Component {
 
         this.setState({data: fetchedData });
         //console.log({ data: fetchedData });
+
+        const fetchedDailyData = await fetchDailyData();
+        this.setState({daily: fetchedDailyData});
     }
 
     render() {
         const { data } = this.state;
-        const { date } = this.state;
+        const { daily } = this.state;
 
         return (
             <div>
                 <Cards data={data} />
-                <Chart />
+                <Chart data={daily} />
                 <ProvincePicker />
             </div>
         );
