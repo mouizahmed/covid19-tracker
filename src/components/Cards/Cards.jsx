@@ -135,10 +135,6 @@ const Cards = ({ data }) => {
 
 
 
-
-
-
-
         </div>
     );
 }

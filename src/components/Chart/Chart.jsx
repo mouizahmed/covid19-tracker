@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api';
-import { Line, line } from 'react-chartjs-2';
-import { Grid, Card, CardContent, CardHeader } from '@material-ui/core';
+import { Line } from 'react-chartjs-2';
+import { Card, CardContent, CardHeader } from '@material-ui/core';
 
 
 import styles from './Chart.module.css';
@@ -41,6 +41,30 @@ const Chart = (data) => {
                         label: 'Recoveries',
                         borderColor: 'green',
                         backgroundColor: 'rgba(0, 255, 0, 0.5)',
+                        fill: true,
+                    }, {
+                        data: newData.map((data) => data.total_tests),
+                        label: 'Testing',
+                        borderColor: 'purple',
+                        backgroundColor: 'rgba(0, 0, 255, 0.3)',
+                        fill: true,
+                    }, {
+                        data: newData.map((data) => data.total_hospitalizations),
+                        label: 'Hospitalizations',
+                        borderColor: 'yellow',
+                        backgroundColor: 'rgba(255, 255, 0, 0.2',
+                        fill: true,
+                    }, {
+                        data: newData.map((data) => data.total_vaccinations),
+                        label: 'Vaccinations',
+                        borderColor: 'black',
+                        backgroundColor: 'rgba(0, 0, 100, 0.1)',
+                        fill: true,
+                    }, {
+                        data: newData.map((data) => data.total_criticals),
+                        label: 'Criticals',
+                        borderColor: 'orange',
+                        backgroundColor: 'rgba(255, 100, 0, 0.3)',
                         fill: true,
                     },
                     ],
