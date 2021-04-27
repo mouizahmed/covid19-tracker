@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ProvinceInfo } from './components';
+import { ProvinceInfo, ProvinceData } from './components';
 import NotFoundPage from './pages/404';
 import Main from './pages/Main.jsx';
-import { fetchDailyData, fetchData, countryData} from './api/';
+import { fetchDailyData, fetchData, fetchCountry, countryData } from './api/';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -25,17 +25,24 @@ class App extends React.Component {
         const fetchedDailyData = await fetchDailyData();
         this.setState({daily: fetchedDailyData});
 
-        const fetchedCountryData = await countryData();
+        const fetchedCountryData = await fetchCountry();
         console.log(fetchedCountryData);
     }
 
-    render() {
+    handleCountryChange = async (i) => { 
+        const data = await countryData(i);
+        console.log(data);
+        this.setState({ data });
+    }
 
+    render() {
+        const {data} = this.state;
         return (
             <Router>
+                
                 <Switch>
-                <Route exact path="/" component={Main} />
-                <Route exact path="/province" component={ProvinceInfo} />
+                <Route exact path="/" component={Main} handleCountryChange={this.handleCountryChange} />
+                <Route exact path="/province" render={props => <React.Fragment><ProvinceInfo handleCountryChange={this.handleCountryChange} /> <ProvinceData data={data} /> </React.Fragment>} />
                 <Route component={NotFoundPage} />
                 <Redirect to="/404"/>
                 <Route />

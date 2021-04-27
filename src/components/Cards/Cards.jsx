@@ -20,7 +20,6 @@ const Cards = ({ data }) => {
 
         fetchMyAPI();
     }, []);
-    console.log(newData);
 
     const [state, setState] = React.useState({
         checkedA: false,

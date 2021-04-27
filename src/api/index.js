@@ -1,10 +1,9 @@
 import axios from 'axios';
-import GeoJSON from 'geojson';
 
 const url = 'https://api.covid19tracker.ca/summary';
 const url2 = 'https://api.covid19tracker.ca/reports';
-const url3 = 'https://raw.githubusercontent.com/Clavicus/Testing-Requests/master/canadian-provinces.json';
-
+const url3 = 'https://api.covid19tracker.ca/provinces/';
+const url4 = 'https://api.covid19tracker.ca/summary/split';
 export const fetchData = async () => {
     try {
         const { data: { data}} = await axios.get(url);
@@ -26,13 +25,24 @@ export const fetchDailyData = async () => {
     }
 }
 
-export const countryData = async () => {
+export const fetchCountry = async (country) => {
     try {
-        const data = await axios.get(url3);
-        const geoData = GeoJSON.parse(data, {Point: ['latitude', 'longitude']});
+        const {data: data} = await axios.get(url3);
 
-        return geoData;
+        return data.map(({ name }) => ({ name }));
     } catch (error) {
         return error;
     }
 }
+
+export const countryData = async (i) => {
+    try {
+        const {data: data} = await axios.get(url4);
+
+        return data.data[i];
+       // return data.data.map(({ province, total_cases}) => ({ province, total_cases }));
+    } catch (error) {
+        return error;
+    }
+}
+

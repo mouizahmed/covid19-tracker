@@ -1,0 +1,50 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.card {
+    width: 275;
+}
+
+.deaths {
+    background-color: rgba(255, 0, 0, 0.5);
+    align-items: center;
+}
+
+.cases {
+    background-color: rgba(0, 0, 255, 0.5);
+    align-items: center;
+}
+
+.hospitalizations {
+    background-color: rgba(235, 183, 38, 0.5);
+}
+
+.recoveries {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.tests {
+    background-color: rgba(250, 98, 242, 0.5);
+}
+
+.vaccinations {
+    background-color: rgba(35, 159, 231, 0.5);
+}
+
+.text_main {
+    color: white;
+    font-weight: bold;
+}
+
+.text_secondary {
+    color: white;
+}
+
+
+
+
