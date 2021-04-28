@@ -19,7 +19,6 @@ const ProvinceInfo = ({ handleCountryChange }) => {
         fetchMyAPI();
     }, []);
 
-    
     return (
       <div>
         <FormControl>

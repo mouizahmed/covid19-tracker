@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { countryData } from '../../api';
+import { countryData, dailyProvince } from '../../api';
 import { Line } from 'react-chartjs-2';
-import { Typography, Grid, Card, CardContent, Switch, FormControlLabel } from '@material-ui/core';
+import { Typography, Grid, Card, CardHeader, CardContent, Switch, FormControlLabel } from '@material-ui/core';
 
 
 import styles from './ProvinceData.module.css';
 
 const ProvinceData = (props) => {
     console.log(props.data.province);
+    console.log(props.country);
 
     const [state, setState] = React.useState({
         checkedA: false,
@@ -19,12 +20,36 @@ const ProvinceData = (props) => {
     };
 
 
+
+
+
+
+    const lineChart = (
+        props.country ? (
+            <Line
+                data={{
+                    labels: props.country.map(({ date }) => new Date(date).toLocaleDateString()),
+                    datasets: [{
+                        data: props.country.map(({ total_cases }) => total_cases),
+                        label: 'Cases',
+                        borderColor: '#3333ff',
+                        fill: true,
+                    },
+                    ],
+                }}
+            />
+        ) : null
+    );
+    
+
+
     return (
     
      
 
 
 <div className={styles.container}>
+    {props.data.province}
 <Grid container spacing={3} justify="center">
     <Grid item xs>
         <Card className={styles.card}>
@@ -118,7 +143,14 @@ const ProvinceData = (props) => {
         </Card>
     </Grid>
 </Grid>
-
+<Card className={styles.card}>
+                <CardHeader className={styles.header}
+                    title="Canada Cumulative"
+                />
+                <CardContent className={styles.content}>
+                    {lineChart}
+                </CardContent>
+            </Card>
 
 
 </div>

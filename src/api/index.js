@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const url = 'https://api.covid19tracker.ca/summary';
 const url2 = 'https://api.covid19tracker.ca/reports';
-const url3 = 'https://api.covid19tracker.ca/provinces/';
+const url3 = 'https://api.covid19tracker.ca/provinces/?geo_only=true';
 const url4 = 'https://api.covid19tracker.ca/summary/split';
 export const fetchData = async () => {
     try {
@@ -41,6 +41,17 @@ export const countryData = async (i) => {
 
         return data.data[i];
        // return data.data.map(({ province, total_cases}) => ({ province, total_cases }));
+    } catch (error) {
+        return error;
+    }
+}
+
+export const dailyProvince = async(name) => {
+    try {
+        const {data: data}= await axios.get(`https://api.covid19tracker.ca/reports/province/${name}`);
+        
+        return data.data.map(({ date, total_cases }) => ({ date, total_cases }));
+        
     } catch (error) {
         return error;
     }

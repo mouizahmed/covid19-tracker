@@ -4,3 +4,4 @@ export { default as ProvincePicker } from './ProvincePicker/ProvincePicker';
 export { default as Map } from './Map/Map';
 export { default as ProvinceInfo } from './ProvinceInfo/ProvinceInfo';
 export { default as ProvinceData } from './ProvinceData/ProvinceData';
+export { default as ProvinceChart } from './ProvinceData/ProvinceData';
