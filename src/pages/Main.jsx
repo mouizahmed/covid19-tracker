@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Cards, Chart, ProvincePicker, Map } from '../components';
+import { Cards, Chart, ProvincePicker } from '../components';
 
 
 
@@ -12,7 +12,6 @@ const Main = () => {
         <Cards />
         <ProvincePicker />
         <Chart />
-        <Map />
         </React.Fragment>
     );
 }

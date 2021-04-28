@@ -21,7 +21,7 @@ const ProvinceInfo = ({ handleCountryChange }) => {
 
     return (
       <div>
-        <FormControl>
+        <FormControl className="styles.form" variant="outlined">
       <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
         <option value="">Select Province</option>
         {newData.map((newData, i) => <option key={i} value={i}>{newData.name}</option>)}

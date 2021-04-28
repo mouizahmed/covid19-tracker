@@ -49,7 +49,7 @@ const ProvinceData = (props) => {
 
 
 <div className={styles.container}>
-    {props.data.province}
+   {/* {props.data.province} */}
 <Grid container spacing={3} justify="center">
     <Grid item xs>
         <Card className={styles.card}>
@@ -143,7 +143,7 @@ const ProvinceData = (props) => {
         </Card>
     </Grid>
 </Grid>
-<Card className={styles.card}>
+<Card className={styles.cards}>
                 <CardHeader className={styles.header}
                     title="Canada Cumulative"
                 />
