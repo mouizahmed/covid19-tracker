@@ -4,6 +4,7 @@ const url = 'https://api.covid19tracker.ca/summary';
 const url2 = 'https://api.covid19tracker.ca/reports';
 const url3 = 'https://api.covid19tracker.ca/provinces/?geo_only=true';
 const url4 = 'https://api.covid19tracker.ca/summary/split';
+
 export const fetchData = async () => {
     try {
         const { data: { data}} = await axios.get(url);
@@ -27,7 +28,17 @@ export const fetchDailyData = async () => {
 
 export const fetchCountry = async (country) => {
     try {
-        const {data: data} = await axios.get(url3);
+        const {data} = await axios.get(url3);
+
+        return data.map(({ name }) => ({ name }));
+    } catch (error) {
+        return error;
+    }
+}
+
+export const fetchCountry2 = async (country2) => {
+    try {
+        const {data} = await axios.get(url3);
 
         return data.map(({ name }) => ({ name }));
     } catch (error) {
@@ -37,7 +48,7 @@ export const fetchCountry = async (country) => {
 
 export const countryData = async (i) => {
     try {
-        const {data: data} = await axios.get(url4);
+        const {data} = await axios.get(url4);
 
         return data.data[i];
        // return data.data.map(({ province, total_cases}) => ({ province, total_cases }));
@@ -46,14 +57,38 @@ export const countryData = async (i) => {
     }
 }
 
+export const countryData2 = async (i2) => {
+    try {
+        const {data} = await axios.get(url4);
+
+        return data.data[i2];
+       // return data.data.map(({ province, total_cases}) => ({ province, total_cases }));
+    } catch (error) {
+        return error;
+    }
+}
+
 export const dailyProvince = async(name) => {
     try {
-        const {data: data}= await axios.get(`https://api.covid19tracker.ca/reports/province/${name}`);
+        const {data}= await axios.get(`https://api.covid19tracker.ca/reports/province/${name}`);
         
-        return data.data.map(({ date, total_cases }) => ({ date, total_cases }));
+        return data.data.map(({ date, total_cases, change_cases, total_fatalities, change_fatalities, total_recoveries, change_recoveries, total_hospitalizations, change_hospitalizations, total_criticals, change_criticals, total_tests, change_tests, total_vaccinations, change_vaccinations }) => ({ date, total_cases, change_cases, total_fatalities, change_fatalities, total_recoveries, change_recoveries, total_hospitalizations, change_hospitalizations, total_criticals, change_criticals, total_tests, change_tests, total_vaccinations, change_vaccinations }));
         
     } catch (error) {
         return error;
     }
 }
+
+export const dailyProvinceCompared = async(name) => {
+    try {
+        const {data}= await axios.get(`https://api.covid19tracker.ca/reports/province/${name}`);
+        
+        return data.data.map(({ date, total_cases, change_cases, total_fatalities, change_fatalities, total_recoveries, change_recoveries, total_hospitalizations, change_hospitalizations, total_criticals, change_criticals, total_tests, change_tests, total_vaccinations, change_vaccinations }) => ({ date, total_cases, change_cases, total_fatalities, change_fatalities, total_recoveries, change_recoveries, total_hospitalizations, change_hospitalizations, total_criticals, change_criticals, total_tests, change_tests, total_vaccinations, change_vaccinations }));
+        
+    } catch (error) {
+        return error;
+    }
+}
+
+
 

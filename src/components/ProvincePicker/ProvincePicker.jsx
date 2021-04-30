@@ -11,6 +11,10 @@ const ProvincePicker = () => {
             <Link to="/province">
                 <Button variant="contained" color="primary">Select Province</Button>
             </Link>
+
+            <Link to="/compareprovinces">
+                <Button variant="contained" color="primary">Compare Provinces</Button>
+            </Link>
         </div>
     );
 }

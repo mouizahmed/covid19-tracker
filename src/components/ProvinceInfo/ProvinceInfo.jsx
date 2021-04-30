@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { NativeSelect, FormControl } from '@material-ui/core';
-
 import { fetchCountry } from '../../api';
 
-//import styles from './ProvinceInfo.module.css';
+
+import styles from './ProvinceInfo.module.css';
 
 
 
 const ProvinceInfo = ({ handleCountryChange }) => {
-    const [newData, setNewData] = useState([]);
+  
+  const [newData, setNewData] = useState([]);
 
-    useEffect(() => {
-        const fetchMyAPI = async () => {
-            const initialNewData = await fetchCountry();
-            setNewData(initialNewData);
-        };
+  useEffect(() => {
+    const fetchMyAPI = async () => {
+      const initialNewData = await fetchCountry();
+      setNewData(initialNewData);
+    };
 
-        fetchMyAPI();
-    }, []);
+    fetchMyAPI();
+  }, []);
 
-    return (
-      <div>
-        <FormControl className="styles.form" variant="outlined">
-      <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
-        <option value="">Select Province</option>
-        {newData.map((newData, i) => <option key={i} value={i}>{newData.name}</option>)}
-        
-      </NativeSelect>
-    </FormControl>
+  
+
+  return (
+    <div>
+      <FormControl className="styles.form" variant="filled">
+        <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
+          <option value="" disabled selected className={styles.firstOption}>Select Province</option>
+          {newData.map((newData, i) => <option key={i} value={i}>{newData.name}</option>)}
+
+        </NativeSelect>
+      </FormControl>
     </div>
-    );
+  );
 }
 
 export default ProvinceInfo;

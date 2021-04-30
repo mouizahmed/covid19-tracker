@@ -3,10 +3,6 @@
     height: 15px;
 }
 
-.card {
-    width: 65%;
-}
-
 .container {
     display: flex;
     justify-content: center;

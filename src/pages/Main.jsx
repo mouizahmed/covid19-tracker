@@ -9,9 +9,6 @@ const Main = () => {
     
     return (
         <React.Fragment>
-        <Cards />
-        <ProvincePicker />
-        <Chart />
         </React.Fragment>
     );
 }
